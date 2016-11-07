@@ -19,7 +19,7 @@ public class RankingTest {
     @Before
     public void before(){
         testRankings = new ArrayList<DartPlayer>();
-        player1 = new DartPlayer("Johnny", "JPK", 1);
+        player1 = new DartPlayer("Johnny Dee", "JPK", 1);
         player2 = new DartPlayer("Henry Jonnes", "HennyBaby", 2);
         player3 = new DartPlayer("Jimmy Favelo","Favo", 3);
         testRankings.add(player1);
@@ -56,7 +56,17 @@ public class RankingTest {
 
     }
 
+    @Test
+    public void testCanFindPlayerByRank(){
+        Ranking ranking = new Ranking(testRankings);
+        DartPlayer player = ranking.getPlayerAtRank(1);
+        assertEquals("JPK", player.getNickName());
+    }
 
-
-
+    @Test
+    public void testCanFindPlayerInRankingByName(){
+        Ranking ranking = new Ranking(testRankings);
+        DartPlayer player = ranking.getPlayerByName("Johnny Dee");
+        assertEquals(1, player.getRank());
+    }
 }
